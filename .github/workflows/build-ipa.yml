@@ -1,0 +1,65 @@
+name: Build unsigned IPA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/MacOS/Xcode
+
+      - name: Show SDK
+        run: xcodebuild -version && xcodebuild -showsdks
+
+      - name: Build (no signing)
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project CPDAzi.xcodeproj \
+            -scheme CPDAzi \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            ENABLE_BITCODE=NO \
+            build | xcbeautify || xcodebuild \
+            -project CPDAzi.xcodeproj \
+            -scheme CPDAzi \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package IPA
+        run: |
+          set -e
+          APP="build/Build/Products/Release-iphoneos/CPDazi.app"
+          test -d "$APP"
+          rm -rf Payload CPDAzi.ipa
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          # 移除签名残留，便于第三方工具重签
+          rm -rf Payload/CPDazi.app/_CodeSignature
+          rm -f Payload/CPDazi.app/embedded.mobileprovision
+          zip -qry CPDAzi.ipa Payload
+          ls -lh CPDAzi.ipa
+          unzip -l CPDAzi.ipa | head -20
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CPDAzi-unsigned-ipa
+          path: CPDAzi.ipa
+          retention-days: 30

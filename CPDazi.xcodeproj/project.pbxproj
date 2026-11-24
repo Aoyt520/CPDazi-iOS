@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A0000000000000000000201 /* CPDaziApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000101 /* CPDaziApp.swift */; };
+		1A0000000000000000000202 /* FusionConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000102 /* FusionConfig.swift */; };
+		1A0000000000000000000203 /* FusionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000103 /* FusionProtocol.swift */; };
+		1A0000000000000000000204 /* UDPSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000104 /* UDPSender.swift */; };
+		1A0000000000000000000205 /* DeviceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000105 /* DeviceClient.swift */; };
+		1A0000000000000000000206 /* LicenceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000106 /* LicenceCore.swift */; };
+		1A0000000000000000000207 /* LicenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000107 /* LicenceManager.swift */; };
+		1A0000000000000000000208 /* DeviceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000108 /* DeviceDiscovery.swift */; };
+		1A0000000000000000000209 /* NavSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000109 /* NavSource.swift */; };
+		1A000000000000000000020A /* FusionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010A /* FusionBridge.swift */; };
+		1A000000000000000000020B /* EpFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010B /* EpFetcher.swift */; };
+		1A000000000000000000020C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010C /* StatusView.swift */; };
+		1A000000000000000000020D /* LicenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010D /* LicenceView.swift */; };
+		1A000000000000000000020E /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010E /* DeviceView.swift */; };
+		1A000000000000000000020F /* EPViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000010F /* EPViewScreen.swift */; };
+		1A0000000000000000000210 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000110 /* SettingsView.swift */; };
+		1A0000000000000000000211 /* LicenceSelfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000112 /* LicenceSelfTest.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A0000000000000000000005 /* CPDazi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPDazi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0000000000000000000101 /* CPDaziApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDaziApp.swift; sourceTree = "<group>"; };
+		1A0000000000000000000102 /* FusionConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FusionConfig.swift; sourceTree = "<group>"; };
+		1A0000000000000000000103 /* FusionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FusionProtocol.swift; sourceTree = "<group>"; };
+		1A0000000000000000000104 /* UDPSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPSender.swift; sourceTree = "<group>"; };
+		1A0000000000000000000105 /* DeviceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceClient.swift; sourceTree = "<group>"; };
+		1A0000000000000000000106 /* LicenceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceCore.swift; sourceTree = "<group>"; };
+		1A0000000000000000000107 /* LicenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceManager.swift; sourceTree = "<group>"; };
+		1A0000000000000000000108 /* DeviceDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDiscovery.swift; sourceTree = "<group>"; };
+		1A0000000000000000000109 /* NavSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavSource.swift; sourceTree = "<group>"; };
+		1A000000000000000000010A /* FusionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FusionBridge.swift; sourceTree = "<group>"; };
+		1A000000000000000000010B /* EpFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpFetcher.swift; sourceTree = "<group>"; };
+		1A000000000000000000010C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		1A000000000000000000010D /* LicenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceView.swift; sourceTree = "<group>"; };
+		1A000000000000000000010E /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
+		1A000000000000000000010F /* EPViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPViewScreen.swift; sourceTree = "<group>"; };
+		1A0000000000000000000110 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000112 /* LicenceSelfTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceSelfTest.swift; sourceTree = "<group>"; };
+		1A0000000000000000000111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A0000000000000000000007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000012 /* CPDazi */,
+				1A0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000012 /* CPDazi */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000010 /* Core */,
+				1A0000000000000000000011 /* Views */,
+				1A0000000000000000000101 /* CPDaziApp.swift */,
+				1A0000000000000000000111 /* Info.plist */,
+			);
+			path = CPDazi;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000005 /* CPDazi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000010 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000102 /* FusionConfig.swift */,
+				1A0000000000000000000103 /* FusionProtocol.swift */,
+				1A0000000000000000000104 /* UDPSender.swift */,
+				1A0000000000000000000105 /* DeviceClient.swift */,
+				1A0000000000000000000106 /* LicenceCore.swift */,
+				1A0000000000000000000107 /* LicenceManager.swift */,
+				1A0000000000000000000108 /* DeviceDiscovery.swift */,
+				1A0000000000000000000109 /* NavSource.swift */,
+				1A000000000000000000010A /* FusionBridge.swift */,
+				1A000000000000000000010B /* EpFetcher.swift */,
+				1A0000000000000000000112 /* LicenceSelfTest.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000011 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A000000000000000000010C /* StatusView.swift */,
+				1A000000000000000000010D /* LicenceView.swift */,
+				1A000000000000000000010E /* DeviceView.swift */,
+				1A000000000000000000010F /* EPViewScreen.swift */,
+				1A0000000000000000000110 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A0000000000000000000004 /* CPDazi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A000000000000000000000A /* Build configuration list for PBXNativeTarget "CPDazi" */;
+			buildPhases = (
+				1A0000000000000000000006 /* Sources */,
+				1A0000000000000000000007 /* Frameworks */,
+				1A0000000000000000000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CPDazi;
+			productName = CPDazi;
+			productReference = 1A0000000000000000000005 /* CPDazi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1A0000000000000000000004 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 1A0000000000000000000009 /* Build configuration list for PBXProject "CPDazi" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh_CN;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				zh_CN,
+				en,
+				Base,
+			);
+			mainGroup = 1A0000000000000000000002;
+			productRefGroup = 1A0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A0000000000000000000004 /* CPDazi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A0000000000000000000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A0000000000000000000006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0000000000000000000201 /* CPDaziApp.swift in Sources */,
+				1A0000000000000000000202 /* FusionConfig.swift in Sources */,
+				1A0000000000000000000203 /* FusionProtocol.swift in Sources */,
+				1A0000000000000000000204 /* UDPSender.swift in Sources */,
+				1A0000000000000000000205 /* DeviceClient.swift in Sources */,
+				1A0000000000000000000206 /* LicenceCore.swift in Sources */,
+				1A0000000000000000000207 /* LicenceManager.swift in Sources */,
+				1A0000000000000000000208 /* DeviceDiscovery.swift in Sources */,
+				1A0000000000000000000209 /* NavSource.swift in Sources */,
+				1A000000000000000000020A /* FusionBridge.swift in Sources */,
+				1A000000000000000000020B /* EpFetcher.swift in Sources */,
+				1A000000000000000000020C /* StatusView.swift in Sources */,
+				1A000000000000000000020D /* LicenceView.swift in Sources */,
+				1A000000000000000000020E /* DeviceView.swift in Sources */,
+				1A000000000000000000020F /* EPViewScreen.swift in Sources */,
+				1A0000000000000000000210 /* SettingsView.swift in Sources */,
+				1A0000000000000000000211 /* LicenceSelfTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1A000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1A000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A000000000000000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CPDazi/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.z6.cpdazi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A000000000000000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CPDazi/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.z6.cpdazi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A0000000000000000000009 /* Build configuration list for PBXProject "CPDazi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A000000000000000000000B /* Debug */,
+				1A000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A000000000000000000000A /* Build configuration list for PBXNativeTarget "CPDazi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A000000000000000000000D /* Debug */,
+				1A000000000000000000000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A0000000000000000000001 /* Project object */;
+}

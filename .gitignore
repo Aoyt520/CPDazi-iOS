@@ -1,0 +1,18 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+.swiftpm/
+
+# 构建产物
+*.ipa
+*.dSYM.zip
+Payload/
+
+# 系统
+.DS_Store
+__pycache__/
+*.pyc
