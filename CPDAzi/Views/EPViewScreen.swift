@@ -66,7 +66,7 @@ struct EPViewScreen: View {
                                     .background(.ultraThinMaterial, in: Capsule())
                                 Spacer()
                                 Button {
-                                    fetcher.running ? fetcher.stop() : fetcher.start()
+                                    if fetcher.running { fetcher.stop() } else { fetcher.start() }
                                 } label: {
                                     Image(systemName: fetcher.running ? "stop.fill" : "play.fill")
                                 }

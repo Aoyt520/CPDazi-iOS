@@ -37,7 +37,7 @@ final class FusionConfig: ObservableObject {
         didSet { d.set(activatedAt, forKey: "activated_at") }
     }
 
-    private init() {
+    init() {
         host = d.string(forKey: "ip") ?? Self.defaultHost
         fps = d.object(forKey: "fps") as? Int ?? 15
         laneEnabled = d.object(forKey: "lane_enabled") as? Bool ?? true

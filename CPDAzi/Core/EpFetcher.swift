@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Combine
 
 /// MJPEG 拉流 —— 对应 Android com.z6.fusion.EpFetcher（GET /f 返回单帧 JPEG）
 final class EpFetcher: ObservableObject {

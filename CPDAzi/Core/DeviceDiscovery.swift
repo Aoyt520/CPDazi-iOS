@@ -1,5 +1,6 @@
 import Foundation
 import Network
+import Combine
 
 /// 设备发现 —— 对应 Android com.z6.fusion.DeviceScanner / DeviceFinder
 /// iOS 无法读取 /proc/net/arp，改为按本机网段并发探测 :7002/stat

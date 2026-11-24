@@ -106,7 +106,7 @@ struct DeviceView: View {
             }
             .navigationTitle("手动控制")
             .onAppear { authorised = LicenceManager.shared.allowed(.device) }
-            .onChange(of: bridge.running) { _, _ in
+            .onChange(of: bridge.running) { _ in
                 authorised = LicenceManager.shared.allowed(.device)
             }
         }
