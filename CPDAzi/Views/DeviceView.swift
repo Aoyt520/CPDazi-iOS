@@ -19,7 +19,7 @@ struct DeviceView: View {
                     Section {
                         Text("设备功能未授权（需要 MOD 位 4）")
                             .foregroundStyle(.red)
-                        NavigationLink("打开授权页") { LicenceView() }
+                        NavigationLink(destination: LicenceView()) { Text("打开授权页") }
                     }
                 }
 

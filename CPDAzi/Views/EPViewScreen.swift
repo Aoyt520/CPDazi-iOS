@@ -22,7 +22,7 @@ struct EPViewScreen: View {
                     if !authorised {
                         VStack(spacing: 12) {
                             Text("EPview 未授权").foregroundStyle(.red)
-                            NavigationLink("打开授权页") { LicenceView() }
+                            NavigationLink(destination: LicenceView()) { Text("打开授权页") }
                         }
                     } else if let img = fetcher.lastFrame {
                         Image(uiImage: img)

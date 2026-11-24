@@ -20,7 +20,7 @@ struct StatusView: View {
                         Text(LicenceManager.deviceCode()).font(.system(.caption, design: .monospaced))
                             .textSelection(.enabled)
                     }
-                    NavigationLink("打开授权页") { LicenceView() }
+                    NavigationLink(destination: LicenceView()) { Text("打开授权页") }
                 }
 
                 Section("链路") {

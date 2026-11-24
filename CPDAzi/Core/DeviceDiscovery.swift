@@ -12,7 +12,7 @@ final class DeviceDiscovery: ObservableObject {
     @Published private(set) var isScanning = false
     @Published private(set) var localPrefix: String = ""
 
-    private let queue = DispatchQueue(label: "z6.scan", qos: .userInitiated)
+    private var task: Task<Void, Never>?
 
     /// 本机 IPv4 前缀，如 "192.168.16."
     func currentSubnetPrefix() -> String {
@@ -29,11 +29,11 @@ final class DeviceDiscovery: ObservableObject {
         defer { freeifaddrs(ifaddr) }
         for ptr in sequence(first: first, next: { $0.pointee.ifa_next }) {
             let ifa = ptr.pointee
-            guard ifa.ifa_addr?.pointee.sa_family == UInt8(AF_INET) else { continue }
+            guard let addr = ifa.ifa_addr, addr.pointee.sa_family == UInt8(AF_INET) else { continue }
             let name = String(cString: ifa.ifa_name)
             guard name == "en0" else { continue }
             var host = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-            if getnameinfo(ifa.ifa_addr, socklen_t(ifa.ifa_addr.pointee.sa_len),
+            if getnameinfo(addr, socklen_t(addr.pointee.sa_len),
                            &host, socklen_t(host.count), nil, 0, NI_NUMERICHOST) == 0 {
                 address = String(cString: host)
             }
@@ -41,69 +41,86 @@ final class DeviceDiscovery: ObservableObject {
         return address
     }
 
-    func scan(port: UInt16 = UInt16(FusionConfig.statPort), timeout: TimeInterval = 12) {
+    func cancel() {
+        task?.cancel()
+        task = nil
+        isScanning = false
+    }
+
+    /// 纯 async 并发扫描：不使用阻塞等待，避免线程池饥饿
+    func scan(port: UInt16 = UInt16(FusionConfig.statPort), timeout: TimeInterval = 15) {
         guard !isScanning else { return }
         let prefix = currentSubnetPrefix()
         guard !prefix.isEmpty else { return }
+
         isScanning = true
         localPrefix = prefix
         found = []
         scanned = 0
         total = 254
 
-        queue.async { [weak self] in
+        task = Task { [weak self] in
             guard let self else { return }
-            let group = DispatchGroup()
-            let sem = DispatchSemaphore(value: 48)
-            var hits: [String] = []
-            let lock = NSLock()
             let deadline = Date().addingTimeInterval(timeout)
+            var hits: [String] = []
 
-            for i in 1...254 {
-                guard Date() < deadline else { break }
-                let ip = "\(prefix)\(i)"
-                group.enter()
-                sem.wait()
-                DispatchQueue.global(qos: .userInitiated).async {
-                    defer {
-                        sem.signal()
-                        group.leave()
-                    }
-                    if Self.probeSync(ip: ip, port: port) {
-                        lock.lock(); hits.append(ip); lock.unlock()
-                        DispatchQueue.main.async {
-                            self.found = hits.sorted()
+            // 分批：每批 32 个并发，批与批之间串行，避免 254 个 socket 同时打
+            var batchStart = 1
+            while batchStart <= 254 {
+                if Task.isCancelled { break }
+                if Date() >= deadline { break }
+                let batchEnd = min(batchStart + 31, 254)
+                let batch = Array(batchStart...batchEnd)
+                batchStart = batchEnd + 1
+
+                await withTaskGroup(of: (String, Bool).self) { group in
+                    for i in batch {
+                        group.addTask {
+                            (("\(prefix)\(i)"), await Self.probeAsync(ip: "\(prefix)\(i)", port: port))
                         }
                     }
-                    DispatchQueue.main.async { self.scanned += 1 }
+                    for await (ip, ok) in group {
+                        if ok { hits.append(ip) }
+                        await self.bumpProgress(hits)
+                    }
                 }
             }
-            group.wait()
-            let sorted = hits.sorted()
-            DispatchQueue.main.async {
+
+            let sorted = hits.sorted { Self.ipOrder($0) < Self.ipOrder($1) }
+            let cancelled = Task.isCancelled
+            await MainActor.run {
                 self.found = sorted
                 self.isScanning = false
+                if !cancelled { self.total = self.scanned }
             }
         }
     }
 
-    /// 同步探测，供并发扫描使用；与 Android DeviceScanner.probe 判定条件一致
-    static func probeSync(ip: String, port: UInt16) -> Bool {
+    @MainActor
+    private func bumpProgress(_ hits: [String]) {
+        scanned += 1
+        if !hits.isEmpty {
+            found = hits.sorted { Self.ipOrder($0) < Self.ipOrder($1) }
+        }
+    }
+
+    static func ipOrder(_ ip: String) -> Int {
+        Int(ip.split(separator: ".").last ?? "0") ?? 0
+    }
+
+    /// 非阻塞探测；与 Android DeviceScanner.probe 判定条件一致
+    static func probeAsync(ip: String, port: UInt16) async -> Bool {
         guard let url = URL(string: "http://\(ip):\(port)/stat") else { return false }
         var req = URLRequest(url: url)
-        req.timeoutInterval = 0.5
+        req.timeoutInterval = 0.7
         req.cachePolicy = .reloadIgnoringLocalCacheData
-        let sem = DispatchSemaphore(value: 0)
-        var ok = false
-        let task = URLSession.shared.dataTask(with: req) { data, resp, _ in
-            defer { sem.signal() }
-            guard let h = resp as? HTTPURLResponse, h.statusCode == 200, let data else { return }
+        do {
+            let (data, resp) = try await URLSession.shared.data(for: req)
+            guard let h = resp as? HTTPURLResponse, h.statusCode == 200 else { return false }
             let s = String(decoding: data, as: UTF8.self)
-            ok = s.contains("seq=") || s.contains("fps=") || s.contains("out=")
+            return s.contains("seq=") || s.contains("fps=") || s.contains("out=")
+        } catch {
+            return false
         }
-        task.resume()
-        _ = sem.wait(timeout: .now() + 1.0)
-        task.cancel()
-        return ok
     }
 }

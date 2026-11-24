@@ -77,7 +77,7 @@ struct SettingsView: View {
 
                 Section("授权") {
                     Text(LicenceManager.shared.summary).font(.caption)
-                    NavigationLink("打开授权页") { LicenceView() }
+                    NavigationLink(destination: LicenceView()) { Text("打开授权页") }
                 }
 
                 Section("协议端口（只读）") {
